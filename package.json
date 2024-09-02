@@ -1,0 +1,29 @@
+{
+    "name": "@youknowedo/apps",
+    "private": true,
+    "scripts": {
+        "build": "NODE_ENV=production build",
+        "preview": "turbo preview  --env-mode loose",
+        "dev:kader": "turbo dev --filter @kader/app --filter @kader/server --filter @kader/web --filter @kader/shared --filter @youknowedo/ui",
+        "dev:eight": "turbo dev --filter @eight/app --filter @eight/server --filter @eight/shared --filter @youknowedo/ui",
+        "lint": "turbo lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "prettier": "^3.2.5",
+        "turbo": "^2.0.14",
+        "typescript": "^5.4.5"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "bun@1.1.22",
+    "workspaces": [
+        "apps/*/*",
+        "packages/*",
+        "packages/shared/*"
+    ],
+    "dependencies": {
+        "drizzle-orm": "^0.33.0"
+    }
+}
