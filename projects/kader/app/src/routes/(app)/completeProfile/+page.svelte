@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { trpc } from '$lib/trpc';
-	import { Button, Input, Label, Separator } from '@youknowedo/ui/components';
+	import { Button, Input, Label, Separator } from '@shared/ui/components';
 
 	let pfp: string | null = null;
 	let fullName: string | null = null;

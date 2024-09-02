@@ -14,7 +14,6 @@ Used GitHub Copilot as an assistant and followed [lucia auth](https://lucia-auth
 -   [`server`](./apps/server/): API using ExpressJS and tRPC
 -   [`web`](./apps/web/): SvelteKit website and dashboard
 -   [`@kader/shared`](./packages/shared/): Shared functions and types
--   [`@youknowedo/ui`](./packages/ui/): Shared Svelte components, mainly customized [shadcn-svelte](https://www.shadcn-svelte.com/) components
 
 ### Requirements
 

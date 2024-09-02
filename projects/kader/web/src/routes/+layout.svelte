@@ -1,8 +1,8 @@
 <script>
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Card } from '@youknowedo/ui/components';
-	import '@youknowedo/ui/styles.css';
+	import { Card } from '@shared/ui/components';
+	import '@shared/ui/styles.css';
 	import { ModeWatcher } from 'mode-watcher';
 	import { onMount } from 'svelte';
 

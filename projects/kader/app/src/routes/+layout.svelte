@@ -2,8 +2,8 @@
 	import { invalidateAll } from '$app/navigation';
 	import { offline, user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { AlertDialog, Button, Card, Input, Label, Toaster } from '@youknowedo/ui/components';
-	import '@youknowedo/ui/styles.css';
+	import { AlertDialog, Button, Card, Input, Label, Toaster } from '@shared/ui/components';
+	import '@shared/ui/styles.css';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
 

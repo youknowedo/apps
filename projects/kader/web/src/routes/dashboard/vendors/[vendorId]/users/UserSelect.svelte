@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { trpc } from '$lib/trpc';
-	import { Button, Command, Popover } from '@youknowedo/ui/components';
-	import { cn } from '@youknowedo/ui/utils';
+	import { Button, Command, Popover } from '@shared/ui/components';
+	import { cn } from '@shared/ui/utils';
 	import type { User } from 'lucia';
 	import Check from 'lucide-svelte/icons/check';
 	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';

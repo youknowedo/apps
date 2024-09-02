@@ -2,7 +2,7 @@
 	import { location, sessionStarted } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
 	import { updateLocations } from '$lib/utils';
-	import { Button } from '@youknowedo/ui/components';
+	import { Button } from '@shared/ui/components';
 
 	const toggleSession = async () => {
 		sessionStarted.set(!$sessionStarted);

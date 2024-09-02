@@ -2,7 +2,7 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button, Card, Input, Label } from '@youknowedo/ui/components';
+	import { Button, Card, Input, Label } from '@shared/ui/components';
 
 	const verificationToken = $page.url.searchParams.get('token');
 

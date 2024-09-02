@@ -3,7 +3,7 @@
 	import { base } from '$app/paths';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button, Card, Input, Label } from '@youknowedo/ui/components';
+	import { Button, Card, Input, Label } from '@shared/ui/components';
 
 	const signup = async (
 		e: SubmitEvent & {

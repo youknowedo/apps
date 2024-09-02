@@ -1,4 +1,4 @@
-import postcss from '@youknowedo/ui/postcss';
+import postcss from '@shared/ui/postcss';
 
 export default {
 	...postcss

@@ -11,7 +11,7 @@
 	import { page } from '$app/stores';
 	import { user } from '$lib/stores.js';
 	import { trpc } from '$lib/trpc';
-	import { Breadcrumb, Button, DropdownMenu, Sheet, Tooltip } from '@youknowedo/ui/components';
+	import { Breadcrumb, Button, DropdownMenu, Sheet, Tooltip } from '@shared/ui/components';
 	import { onMount } from 'svelte';
 
 	onMount(async () => {

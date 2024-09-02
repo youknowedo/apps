@@ -4,7 +4,7 @@
 	import { offline, user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
 	import type { User } from '@kader/shared';
-	import { Alert, Button } from '@youknowedo/ui/components';
+	import { Alert, Button } from '@shared/ui/components';
 	import { Buffer } from 'buffer';
 	import CircleAlert from 'lucide-svelte/icons/circle-alert';
 	import QrCode from 'lucide-svelte/icons/qr-code';

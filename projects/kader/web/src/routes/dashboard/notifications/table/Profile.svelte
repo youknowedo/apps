@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { trpc } from '$lib/trpc';
 	import type { User } from '@kader/shared';
-	import { Button, Drawer } from '@youknowedo/ui/components';
+	import { Button, Drawer } from '@shared/ui/components';
 	import { toast } from 'svelte-sonner';
 
 	export let user: User;

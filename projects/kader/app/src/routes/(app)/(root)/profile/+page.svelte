@@ -3,7 +3,7 @@
 	import { base } from '$app/paths';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button, Separator } from '@youknowedo/ui/components';
+	import { Button, Separator } from '@shared/ui/components';
 
 	const logout = async () => {
 		await trpc.auth.logout.mutate();

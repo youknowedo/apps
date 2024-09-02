@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { Button, DropdownMenu, Input, Label, Sheet, Table } from '@youknowedo/ui/components';
+	import { Button, DropdownMenu, Input, Label, Sheet, Table } from '@shared/ui/components';
 	import type { Session, User } from 'lucia';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import Check from 'lucide-svelte/icons/check';

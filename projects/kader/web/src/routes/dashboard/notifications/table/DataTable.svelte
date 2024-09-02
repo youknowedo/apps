@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Table } from '@youknowedo/ui/components';
+	import { Button, Table } from '@shared/ui/components';
 	import type { User } from 'lucia';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 

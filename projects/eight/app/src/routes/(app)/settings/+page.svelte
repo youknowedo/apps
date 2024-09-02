@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button, Input, Label, Separator } from '@youknowedo/ui/components';
+	import { Button, Input, Label, Separator } from '@shared/ui/components';
 	import { onMount } from 'svelte';
 
 	let pfp: string | null = null;

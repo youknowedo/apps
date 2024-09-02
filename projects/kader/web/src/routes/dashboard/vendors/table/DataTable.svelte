@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Vendor } from '@kader/shared';
-	import { Button, DropdownMenu, Input, Table } from '@youknowedo/ui/components';
+	import { Button, DropdownMenu, Input, Table } from '@shared/ui/components';
 	import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
 	import { createRender, createTable, Render, Subscribe } from 'svelte-headless-table';

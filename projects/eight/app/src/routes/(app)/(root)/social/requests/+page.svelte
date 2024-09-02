@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { trpc } from '$lib/trpc';
-	import { Button, Input } from '@youknowedo/ui/components';
+	import { Button, Input } from '@shared/ui/components';
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 	import Search from 'lucide-svelte/icons/search';
 	import { onMount } from 'svelte';

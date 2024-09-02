@@ -3,8 +3,8 @@
 	import { base } from '$app/paths';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button, Card, Input, Label } from '@youknowedo/ui/components';
-	import '@youknowedo/ui/styles.css';
+	import { Button, Card, Input, Label } from '@shared/ui/components';
+	import '@shared/ui/styles.css';
 
 	const login = async (
 		e: SubmitEvent & {

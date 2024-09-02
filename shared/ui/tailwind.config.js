@@ -5,7 +5,7 @@ const config = {
 	darkMode: ['class'],
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		'../../../node_modules/@youknowedo/ui/**/*.{html,js,svelte,ts}'
+		'../../../node_modules/@shared/ui/**/*.{html,js,svelte,ts}'
 	],
 	safelist: ['dark'],
 	theme: {

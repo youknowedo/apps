@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@kader/shared": "*",
-		"@youknowedo/ui": "*",
+		"@shared/ui": "*",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-static": "^3.0.4",
 		"@sveltejs/kit": "^2.0.0",

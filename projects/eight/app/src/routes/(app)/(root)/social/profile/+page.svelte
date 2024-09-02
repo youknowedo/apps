@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
-	import { Button } from '@youknowedo/ui/components';
+	import { Button } from '@shared/ui/components';
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 
 	const logout = async () => {

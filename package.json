@@ -19,9 +19,8 @@
     },
     "packageManager": "bun@1.1.22",
     "workspaces": [
-        "apps/*/*",
-        "packages/*",
-        "packages/shared/*"
+        "projects/*/*",
+        "shared/*"
     ],
     "dependencies": {
         "drizzle-orm": "^0.33.0"

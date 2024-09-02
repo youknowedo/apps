@@ -1,4 +1,4 @@
-import tailwind from '@youknowedo/ui/tailwind';
+import tailwind from '@shared/ui/tailwind';
 
 /** @type {import('tailwindcss').Config} */
 export default {
