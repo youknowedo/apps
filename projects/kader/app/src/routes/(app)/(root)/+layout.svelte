@@ -11,16 +11,16 @@
 
 	let items: NavigationItem<typeof Compass>[] = [
 		{
-			icon: Compass,
-			onclick: () => goto('/explore')
+			href: '/explore',
+			icon: Compass
 		},
 		{
-			img: '/logo.svg',
-			onclick: () => goto('/')
+			href: '/start',
+			img: '/logo.svg'
 		},
 		{
-			icon: User,
-			onclick: () => goto('/profile')
+			href: '/profile',
+			icon: User
 		}
 	];
 </script>
