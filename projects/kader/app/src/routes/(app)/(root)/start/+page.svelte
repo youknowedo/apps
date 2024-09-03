@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { offline, user } from '$lib/stores';
+	import { offline, qrScanner, user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
 	import type { User } from '@kader/shared';
 	import { Alert, Button } from '@shared/ui/components';
@@ -19,7 +19,6 @@
 
 	let scanMode = false;
 	let video: HTMLVideoElement;
-	let qrScanner: QrScanner | null = null;
 	let scannedUser: User | null = null;
 
 	const switchMode = () => {
@@ -28,36 +27,40 @@
 			return;
 		}
 
-		scanMode = !scanMode;
-		if (scanMode) {
-			qrScanner = new QrScanner(
-				video,
-				async (result) => {
-					qrScanner?.stop();
+		if (!scanMode) {
+			$qrScanner?.destroy();
+			qrScanner.set(
+				new QrScanner(
+					video,
+					async (result) => {
+						$qrScanner?.stop();
 
-					const {
-						userId,
-						token
-					}: {
-						userId: string;
-						token: string;
-					} = JSON.parse(result.data);
+						const {
+							userId,
+							token
+						}: {
+							userId: string;
+							token: string;
+						} = JSON.parse(result.data);
 
-					const { user: u } = await trpc.user.fromQr.query({ userId, token });
+						const { user: u } = await trpc.user.fromQr.query({ userId, token });
 
-					if (!u) return;
+						if (!u) return;
 
-					scannedUser = u;
-				},
-				{
-					preferredCamera: 'environment'
-				}
+						scannedUser = u;
+					},
+					{
+						preferredCamera: 'environment'
+					}
+				)
 			);
-			qrScanner.start();
+			$qrScanner?.start();
 		} else {
-			qrScanner?.destroy();
-			qrScanner = null;
+			$qrScanner?.destroy();
+			qrScanner.set(null);
 		}
+
+		scanMode = !scanMode;
 	};
 
 	user.subscribe(async (u) => {
@@ -103,11 +106,16 @@
 	});
 </script>
 
-<div class="relative flex flex-col items-center justify-center flex-1 w-full">
-	<Button on:click={switchMode} class="absolute top-0 right-0 h-12" variant="ghost" size="sm">
+<div class="relative flex flex-col items-center justify-center flex-1 w-full pb-24">
+	<Button
+		on:click={switchMode}
+		class="absolute top-0 right-0 h-12"
+		variant={!scanMode && $user?.role !== 'vendor' ? 'ghost' : 'secondary'}
+		size="sm"
+	>
 		<svelte:component
 			this={!scanMode && $user?.role !== 'vendor' ? ScanQrCode : QrCode}
-			class="w-6 h-6"
+			class="w-6 h-6 border-black drop-shadow-2xl"
 		/>
 	</Button>
 
@@ -127,15 +135,16 @@
 			<p class="mt-2 text-lg font-semibold">{scannedUser?.full_name}</p>
 			<p class="mt-1 text-sm text-gray-500">{scannedUser?.email}</p>
 
-			<Button on:click={() => ((scannedUser = null), qrScanner?.start())}>Back</Button>
+			<Button on:click={() => ((scannedUser = null), $qrScanner?.start())}>Back</Button>
 		</div>
-		<video
-			id="scanner"
-			class="w-64 h-64 object-cover {scannedUser ? 'hidden' : ''}"
-			bind:this={video}
-		>
-			<div class="placeholder">No cameras loaded!</div>
-			<track kind="captions" />
-		</video>
 	</div>
 </div>
+
+<video
+	id="scanner"
+	class="absolute inset-0 h-screen -z-10 object-cover {scannedUser ? 'hidden' : ''}"
+	bind:this={video}
+>
+	<div class="placeholder">No cameras loaded!</div>
+	<track kind="captions" />
+</video>

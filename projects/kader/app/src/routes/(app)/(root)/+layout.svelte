@@ -2,12 +2,7 @@
 	import Compass from 'lucide-svelte/icons/compass';
 	import User from 'lucide-svelte/icons/user';
 
-	import { goto } from '$app/navigation';
-	import { base } from '$app/paths';
-	import { page } from '$app/stores';
 	import { BottomNavigation, type NavigationItem } from '@shared/ui/app';
-
-	let switching = false;
 
 	let items: NavigationItem<typeof Compass>[] = [
 		{
@@ -28,11 +23,4 @@
 <div class="flex flex-col h-screen pb-20">
 	<slot />
 </div>
-<BottomNavigation
-	{items}
-	position={$page.url.pathname.startsWith('/explore')
-		? 0
-		: $page.url.pathname.startsWith('/profile')
-			? 2
-			: 1}
-/>
+<BottomNavigation {items} />
