@@ -25,14 +25,14 @@
 	];
 </script>
 
-<div class="flex flex-col items-center h-screen pt-12 pb-32 overflow-x-hidden">
+<div class="flex flex-col h-screen pb-20">
 	<slot />
-	<BottomNavigation
-		{items}
-		position={$page.url.pathname.startsWith('/explore')
-			? 0
-			: $page.url.pathname.startsWith('/profile')
-				? 2
-				: 1}
-	/>
 </div>
+<BottomNavigation
+	{items}
+	position={$page.url.pathname.startsWith('/explore')
+		? 0
+		: $page.url.pathname.startsWith('/profile')
+			? 2
+			: 1}
+/>
