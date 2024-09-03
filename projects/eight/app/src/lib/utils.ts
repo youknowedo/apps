@@ -17,14 +17,14 @@ export const onMobile = () => {
 	);
 };
 
-export const updateLocations = async (map?: Map) => {
+export const updateLocations = async (map?: Map, started?: boolean) => {
 	navigator.geolocation.getCurrentPosition(
 		async (position) => {
 			const { latitude, longitude } = position.coords;
 
 			location.set({ latitude, longitude });
 
-			if (!get(sessionStarted)) return;
+			if (!(started ?? get(sessionStarted))) return;
 
 			const { success, error } = await trpc.location.update.mutate({ latitude, longitude });
 			if (!success) return alert(error);
@@ -33,6 +33,9 @@ export const updateLocations = async (map?: Map) => {
 			console.error(e);
 
 			location.set({ latitude: 48.858093, longitude: 2.294694 });
+
+			if (!(started ?? get(sessionStarted))) return;
+
 			const { success, error } = await trpc.location.update.mutate({
 				latitude: 48.858093,
 				longitude: 2.294694

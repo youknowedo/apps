@@ -17,6 +17,10 @@
 			"types": "./dist/index.d.ts",
 			"default": "./dist/index.js"
 		},
+		"./app": {
+			"types": "./dist/components/app/index.d.ts",
+			"default": "./dist/components/app/index.js"
+		},
 		"./components": {
 			"types": "./dist/components/index.d.ts",
 			"default": "./dist/components/index.js"

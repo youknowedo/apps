@@ -5,12 +5,13 @@
 	import { Button } from '@shared/ui/components';
 
 	const toggleSession = async () => {
-		sessionStarted.set(!$sessionStarted);
-
-		if ($sessionStarted) {
+		if ($sessionStarted) trpc.location.stop.mutate();
+		else {
 			await updateLocations();
 			trpc.location.start.mutate($location!);
-		} else trpc.location.stop.mutate();
+		}
+
+		sessionStarted.set(!$sessionStarted);
 	};
 </script>
 

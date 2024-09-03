@@ -21,12 +21,12 @@
 			email: formData.get('email') as string,
 			password: formData.get('password') as string
 		});
-		user.set(u);
-
 		if (!success) {
 			alert(error);
 			return;
 		}
+
+		user.set(u);
 	};
 </script>
 
