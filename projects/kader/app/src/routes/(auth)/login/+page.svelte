@@ -14,19 +14,25 @@
 		const formData = new FormData(e.currentTarget);
 
 		const {
-			success,
-			error,
+			success: s1,
+			error: e1,
 			user: u
 		} = await trpc.auth.login.mutate({
 			email: formData.get('email') as string,
 			password: formData.get('password') as string
 		});
-		user.set(u);
 
-		if (!success) {
-			alert(error);
+		if (!s1) {
+			alert(e1);
 			return;
 		}
+
+		const { success: s2, error: e2, qr } = await trpc.qr.generateId.mutate();
+		if (!s2 || !qr) throw new Error(e2);
+
+		localStorage.setItem('qr_id', qr);
+
+		user.set(u);
 	};
 </script>
 

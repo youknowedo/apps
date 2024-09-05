@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
+	import { logout } from '$lib/utils';
 	import { Button } from '@shared/ui/components';
 	import { Buffer } from 'buffer';
 	import QrCode from 'lucide-svelte/icons/qr-code';
@@ -14,18 +15,13 @@
 	user.subscribe(async (u) => {
 		if (!u) return;
 
-		let hex_qr_id = localStorage.getItem('qr_id');
-		let qrId: Uint8Array;
-		if (!hex_qr_id) {
-			const { success, error, qr } = await trpc.qr.getSingle.query();
-			if (!success) throw new Error(error);
+		let localQrId = localStorage.getItem('qr_id');
+		if (!localQrId) return logout();
 
-			hex_qr_id = qr ?? null;
-			if (!hex_qr_id) throw new Error('Failed to fetch QR ID');
+		const { success } = await trpc.qr.validate.query(localQrId);
+		if (!success) return logout();
 
-			localStorage.setItem('qr_id', hex_qr_id);
-			qrId = Uint8Array.from(Buffer.from(hex_qr_id, 'hex'));
-		} else qrId = Uint8Array.from(Buffer.from(hex_qr_id, 'hex'));
+		const qrId = Uint8Array.from(Buffer.from(localQrId, 'hex'));
 
 		let secret = new OTPAuth.Secret({ buffer: qrId.buffer });
 		let totp = new OTPAuth.TOTP({
@@ -65,7 +61,6 @@
 	</Button>
 
 	{#if qr}
-		{localStorage.getItem('qr_id')}
 		<img class="h-64" src={qr} alt="" />
 	{:else}
 		Loading...

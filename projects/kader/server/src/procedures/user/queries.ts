@@ -10,65 +10,64 @@ import { procedure } from "../../server.js";
 import type { ResponseData } from "../../types";
 
 export const queries = {
-    getSingle: procedure
-        .input(z.string().nullish())
-        .query(
-            async ({
-                ctx,
-                input: id,
-            }): Promise<{ success: boolean; error?: string; user?: User }> => {
-                if (!ctx.sessionId)
-                    return {
-                        success: false,
-                        error: "Unauthenticated 1",
-                    };
+    getSingle: procedure.input(z.string().nullish()).query(
+        async ({
+            ctx,
+            input: id,
+        }): Promise<{
+            success: boolean;
+            error?: string;
+            user?: Omit<User, "hex_qr_id"> & { pfp: string };
+        }> => {
+            if (!ctx.sessionId)
+                return {
+                    success: false,
+                    error: "Unauthenticated 1",
+                };
 
-                const { session, user } = await lucia.validateSession(
-                    ctx.sessionId
-                );
-                if (!session)
-                    return {
-                        success: false,
-                        error: "Unauthenticated 2",
-                    };
+            const { session, user } = await lucia.validateSession(
+                ctx.sessionId
+            );
+            if (!session)
+                return {
+                    success: false,
+                    error: "Unauthenticated 2",
+                };
 
-                if (!id)
-                    return {
-                        success: true,
-                        user: user && {
-                            ...user,
-                            pfp: await minio.presignedGetObject(
-                                process.env.MINIO_BUCKET!,
-                                user.id + ".webp"
-                            ),
-                        },
-                    };
-
-                if (user.role !== "admin")
-                    return {
-                        success: false,
-                        error: "Unauthorized",
-                    };
-
-                const selectedUser = (
-                    await db
-                        .select()
-                        .from(userTable)
-                        .where(eq(userTable.id, id))
-                )[0];
-
+            if (!id)
                 return {
                     success: true,
-                    user: selectedUser && {
-                        ...selectedUser,
+                    user: user && {
+                        ...user,
                         pfp: await minio.presignedGetObject(
                             process.env.MINIO_BUCKET!,
-                            selectedUser.id + ".webp"
+                            user.id + ".webp"
                         ),
                     },
                 };
-            }
-        ),
+
+            if (user.role !== "admin")
+                return {
+                    success: false,
+                    error: "Unauthorized",
+                };
+
+            const selectedUser = (
+                await db.select().from(userTable).where(eq(userTable.id, id))
+            )[0];
+
+            return {
+                success: true,
+                user: selectedUser && {
+                    ...selectedUser,
+                    pfp: await minio.presignedGetObject(
+                        process.env.MINIO_BUCKET!,
+                        selectedUser.id + ".webp"
+                    ),
+                },
+            };
+        }
+    ),
 
     getMultiple: procedure
         .input(
@@ -140,7 +139,14 @@ export const queries = {
             })
         )
         .query(
-            async ({ ctx, input }): Promise<ResponseData<{ user: User }>> => {
+            async ({
+                ctx,
+                input,
+            }): Promise<
+                ResponseData<{
+                    user: Omit<User, "hex_qr_id"> & { pfp: string };
+                }>
+            > => {
                 if (!ctx.sessionId)
                     return {
                         success: false,

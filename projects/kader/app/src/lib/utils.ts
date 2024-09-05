@@ -1,3 +1,6 @@
+import { user } from './stores';
+import { trpc } from './trpc';
+
 export const onMobile = () => {
 	// @ts-expect-error opera is not defined
 	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -10,4 +13,10 @@ export const onMobile = () => {
 			userAgent.substr(0, 4)
 		)
 	);
+};
+
+export const logout = async () => {
+	await trpc.auth.logout.mutate();
+	user.set(null);
+	localStorage.clear();
 };

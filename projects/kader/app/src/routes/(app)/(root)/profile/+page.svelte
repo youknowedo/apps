@@ -1,14 +1,7 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
-	import { base } from '$app/paths';
 	import { user } from '$lib/stores';
-	import { trpc } from '$lib/trpc';
+	import { logout } from '$lib/utils';
 	import { Button, Separator } from '@shared/ui/components';
-
-	const logout = async () => {
-		await trpc.auth.logout.mutate();
-		user.set(null);
-	};
 </script>
 
 <div class="flex flex-col items-center gap-4">
