@@ -10,9 +10,7 @@
 	import { toast } from 'svelte-sonner';
 
 	let video: HTMLVideoElement;
-	let scannedUser: User | null = null;
 	let scanner: QrScanner | null = null;
-	let noUser: Timer | null = null;
 
 	onMount(() => {
 		if ($offline) {
@@ -32,15 +30,7 @@
 					token: string;
 				} = JSON.parse(result.data);
 
-				const { user: u } = await trpc.user.fromQr.query({ userId, token });
-
-				if (!u) {
-					if (noUser) clearTimeout(noUser);
-					noUser = setTimeout(() => toast.error('User not found!'), 1000);
-					return;
-				}
-
-				scannedUser = u;
+				goto(`/user/${userId}/${token}`);
 			},
 			{
 				preferredCamera: 'environment'
@@ -63,23 +53,11 @@
 	{#if $offline && $user?.role === 'vendor'}
 		You are offline. Cannot scan QR codes.
 	{/if}
-
-	<div class="flex-col items-center justify-center {scannedUser ? 'flex' : 'hidden'}">
-		<img class="w-24 h-24 rounded-full" src={scannedUser?.pfp} alt="" />
-		<p class="mt-2 text-lg font-semibold">{scannedUser?.full_name}</p>
-		<p class="mt-1 text-sm text-gray-500">{scannedUser?.email}</p>
-
-		<Button on:click={() => ((scannedUser = null), scanner?.start())}>Back</Button>
-	</div>
 </div>
 
 <div class={scanner ? 'hidden' : ''}>Loading...</div>
 
-<video
-	id="scanner"
-	class="absolute inset-0 h-screen -z-10 object-cover {scannedUser ? 'hidden' : ''}"
-	bind:this={video}
->
+<video id="scanner" class="absolute inset-0 object-cover h-screen -z-10" bind:this={video}>
 	<div class="placeholder">No cameras loaded!</div>
 	<track kind="captions" />
 </video>

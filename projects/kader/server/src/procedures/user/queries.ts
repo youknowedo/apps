@@ -161,6 +161,12 @@ export const queries = {
                         .where(eq(userTable.id, input.userId))
                 )[0];
 
+                if (!user)
+                    return {
+                        success: false,
+                        error: "Invalid user!",
+                    };
+
                 if (!user.hex_qr_id)
                     return {
                         success: false,
