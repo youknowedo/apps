@@ -10,14 +10,22 @@
 	let user: User | null = null;
 
 	onMount(async () => {
+		const userId = $page.url.searchParams.get('userId');
+		const token = $page.url.searchParams.get('token');
+
+		if (!userId || !token) {
+			toast.error('No user id or token provided');
+			return goto('/start/scan');
+		}
+
 		const { user: u } = await trpc.user.fromQr.query({
-			userId: $page.params.userId,
-			token: $page.params.token
+			userId,
+			token
 		});
 
 		if (!u) {
 			toast.error('Invalid QR');
-			return goto('/start');
+			return goto('/start/scan');
 		}
 
 		user = u;
@@ -44,7 +52,7 @@
 </div>
 
 <Button
-	on:click={() => goto('/start')}
+	on:click={() => goto('/start/scan')}
 	class="box-border absolute h-20 text-2xl w-80 bottom-12 rounded-3xl neu-r neu-up"
 >
 	Back

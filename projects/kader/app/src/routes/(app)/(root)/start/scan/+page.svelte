@@ -30,7 +30,7 @@
 					token: string;
 				} = JSON.parse(result.data);
 
-				goto(`/user/${userId}/${token}`);
+				goto(`/user?userId=${userId}&token=${token}`);
 			},
 			{
 				preferredCamera: 'environment'
