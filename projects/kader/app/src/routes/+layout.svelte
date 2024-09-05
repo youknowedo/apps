@@ -1,17 +1,12 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { offline, qrScanner, user } from '$lib/stores';
+	import { offline, user } from '$lib/stores';
 	import { trpc } from '$lib/trpc';
 	import { AlertDialog, Button, Card, Input, Label, Toaster } from '@shared/ui/components';
 	import '@shared/ui/styles.css';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
-
-	page.subscribe(() => {
-		$qrScanner?.destroy();
-		qrScanner.set(null);
-	});
 
 	onMount(async () => {
 		offline.set(false);
@@ -57,6 +52,10 @@
 		console.log('Email sent!');
 	};
 </script>
+
+<svelte:head>
+	<title>Kader</title>
+</svelte:head>
 
 <Toaster />
 
