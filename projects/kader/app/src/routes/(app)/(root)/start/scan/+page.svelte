@@ -4,7 +4,6 @@
 	import { trpc } from '$lib/trpc';
 	import type { User } from '@kader/shared';
 	import { Button } from '@shared/ui/components';
-	import QrCode from 'lucide-svelte/icons/qr-code';
 	import ScanQrCode from 'lucide-svelte/icons/scan-qr-code';
 	import QrScanner from 'qr-scanner';
 	import { onMount } from 'svelte';
@@ -12,8 +11,8 @@
 
 	let video: HTMLVideoElement;
 	let scannedUser: User | null = null;
-
 	let scanner: QrScanner | null = null;
+	let noUser: Timer | null = null;
 
 	onMount(() => {
 		if ($offline) {
@@ -35,7 +34,11 @@
 
 				const { user: u } = await trpc.user.fromQr.query({ userId, token });
 
-				if (!u) return;
+				if (!u) {
+					if (noUser) clearTimeout(noUser);
+					noUser = setTimeout(() => toast.error('User not found!'), 1000);
+					return;
+				}
 
 				scannedUser = u;
 			},
