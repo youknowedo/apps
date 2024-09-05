@@ -20,7 +20,7 @@
 	];
 </script>
 
-<div class="flex flex-col h-screen pb-20">
+<div class="flex flex-col flex-1">
 	<slot />
 </div>
 <BottomNavigation {items} />

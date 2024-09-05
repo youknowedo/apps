@@ -14,6 +14,6 @@
 	});
 </script>
 
-<div class="py-12 mx-auto max-w-80">
+<div class="flex flex-col min-h-screen py-12 mx-auto max-w-80">
 	<slot />
 </div>

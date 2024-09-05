@@ -65,6 +65,7 @@
 	</Button>
 
 	{#if qr}
+		{localStorage.getItem('qr_id')}
 		<img class="h-64" src={qr} alt="" />
 	{:else}
 		Loading...
