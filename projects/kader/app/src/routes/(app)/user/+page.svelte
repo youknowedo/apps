@@ -36,7 +36,7 @@
 	{#if user}
 		<div class="flex flex-col flex-1">
 			<div class="flex-1">
-				<label for="picture" class=" neu-up">
+				<label for="picture" class=" ">
 					<img src={user.pfp} alt="Profile" class="object-cover w-40 h-40 m-auto rounded-full" />
 				</label>
 
@@ -53,7 +53,7 @@
 
 <Button
 	on:click={() => goto('/start/scan')}
-	class="box-border absolute h-20 text-2xl w-80 bottom-12 rounded-3xl neu-r neu-up"
+	class="box-border absolute h-20 text-2xl w-80 bottom-12 rounded-3xl neu-r "
 >
 	Back
 </Button>

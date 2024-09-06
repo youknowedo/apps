@@ -42,7 +42,7 @@
 <!-- {#if onMobile()} -->
 <form on:submit={onSubmit} class="flex flex-col h-screen m-auto max-w-80">
 	<div class="flex-1">
-		<label for="picture" class=" neu-up">
+		<label for="picture" class=" ">
 			{#if pfp}
 				<img src={pfp} alt="Profile" class="object-cover w-40 h-40 m-auto rounded-full" />
 			{:else}
@@ -88,7 +88,7 @@
 
 	<Button
 		disabled={!pfp || fullName == ''}
-		class="box-border w-full h-20 text-2xl rounded-3xl neu-r neu-up"
+		class="box-border w-full h-20 text-2xl rounded-3xl neu-r "
 		type="submit"
 	>
 		Send

@@ -30,7 +30,7 @@
 						if (error) toast.error(error);
 						toast.success("User's membership accepted");
 					}}
-					variant="neu"
+					variant="secondary"
 				>
 					Submit
 				</Button>

@@ -18,12 +18,14 @@
 </script>
 
 <div
-	class="absolute z-50 flex items-center justify-around border bg-background h-20 duration-200 bottom-12 rounded-3xl w-80 neu-up {border
+	class="absolute z-50 flex items-center justify-around h-20 duration-200 bottom-12 rounded-3xl w-80 bg-card text-card-foreground border shadow-sm {border
 		? 'border-primary'
-		: 'border-background'}"
+		: ''}"
 >
 	<div
-		class="absolute w-16 h-16 duration-500 rounded-full bg-primary neu-r -z-10"
+		class="absolute w-16 h-16 duration-500 rounded-full bg-primary neu-r -z-10 {switching
+			? 'elongate'
+			: ''}"
 		style="left: {position * (width / n) + halfSpace + 4 + 36 * position}px;"
 	/>
 
