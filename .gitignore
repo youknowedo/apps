@@ -6,11 +6,11 @@ node_modules
 .pnp.js
 
 # Local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
+!.env.example
 
 # Testing
 coverage
@@ -38,3 +38,8 @@ yarn-error.log*
 *.pem
 
 .vercel
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
