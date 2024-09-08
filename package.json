@@ -1,33 +1,33 @@
 {
-  "name": "@youknowedo/apps",
-  "private": true,
-  "scripts": {
-    "build": "NODE_ENV=production turbo build",
-    "build:ui": "turbo build --filter @shared/ui",
-    "preview": "turbo preview  --env-mode loose",
-    "dev:kader": "turbo dev --filter @kader/app --filter @kader/server --filter @kader/web --filter @kader/shared",
-    "dev:eight": "turbo dev --filter @eight/app --filter @eight/server --filter @eight/shared",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ionic:build": "npm run build"
-  },
-  "devDependencies": {
-    "@capacitor/cli": "^6.1.2",
-    "@capacitor/core": "^6.1.2",
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.14",
-    "typescript": "^5.4.5"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "bun@1.1.22",
-  "workspaces": [
-    "projects/*/*",
-    "shared/*"
-  ],
-  "dependencies": {
-    "drizzle-orm": "^0.33.0"
-  },
-  "version": "0.0.0"
+    "name": "@youknowedo/apps",
+    "private": true,
+    "scripts": {
+        "build:kader": "NODE_ENV=production turbo build --filter @kader/app --filter @kader/server --filter @kader/web --filter @kader/shared",
+        "build:ui": "turbo build --filter @shared/ui",
+        "preview": "turbo preview  --env-mode loose",
+        "dev:kader": "turbo dev --filter @kader/app --filter @kader/server --filter @kader/web --filter @kader/shared",
+        "dev:eight": "turbo dev --filter @eight/app --filter @eight/server --filter @eight/shared",
+        "lint": "turbo lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "ionic:build": "npm run build"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^6.1.2",
+        "@capacitor/core": "^6.1.2",
+        "prettier": "^3.2.5",
+        "turbo": "^2.0.14",
+        "typescript": "^5.4.5"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "bun@1.1.22",
+    "workspaces": [
+        "projects/*/*",
+        "shared/*"
+    ],
+    "dependencies": {
+        "drizzle-orm": "^0.33.0"
+    },
+    "version": "0.0.0"
 }

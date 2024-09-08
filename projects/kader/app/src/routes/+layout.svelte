@@ -9,13 +9,16 @@
 	import { toast } from 'svelte-sonner';
 
 	onMount(async () => {
+		console.log('huh');
 		offline.set(false);
 
-		const { user: u } = await trpc.user.getSingle
-			.query()
-			.catch(
-				() => (offline.set(true), { user: JSON.parse(localStorage.getItem('user') ?? 'null') })
-			);
+		const { user: u } = await trpc.user.getSingle.query().catch((e) => {
+			offline.set(true);
+			console.log('offline', e);
+			return {
+				user: JSON.parse(localStorage.getItem('user') ?? 'null')
+			};
+		});
 		user.set(u ?? null);
 
 		if (u) localStorage.setItem('user', JSON.stringify(u));
