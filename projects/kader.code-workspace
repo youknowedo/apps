@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "path": "./kader",
+        },
+        {
+            "path": "../node_modules",
+        },
+        {
+            "path": "../shared",
+        },
+    ],
+}
